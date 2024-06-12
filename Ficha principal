@@ -1,0 +1,139 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    int idade, altura;
+    float peso, imc;
+    char sexo[10], continuar[2];
+
+    // Loop para inserção de idade
+    do {
+        // Mensagem ao usuário para inserir uma idade válida
+        printf("Digite uma idade para seu personagem de 17 a 65 anos.\n");
+        printf("Saiba que existem diferenças em atributos entre certos intervalos de idade.\n");
+        printf("Escolha sabiamente desde o princípio: ");
+
+        // Leitura da idade
+        scanf("%d", &idade);
+
+        // Verificação se a idade está dentro do intervalo permitido
+        if (idade >= 17 && idade <= 65) {
+            // Impressão da idade válida
+            printf("A idade do seu personagem é: %d\n", idade);
+            if (idade >= 17 && idade <= 30) {
+                printf("A idade do seu personagem o bonifica em: Alta energia e recuperação rápida\n");
+                printf("A idade do seu personagem o limita em: Falta de experiência\n");
+            } else if (idade > 30 && idade <= 45) {
+                printf("A idade do seu personagem o bonifica em: Experiência e força\n");
+                printf("A idade do seu personagem o limita em: Redução da capacidade de recuperação\n");
+            } else if (idade > 45 && idade <= 65) {
+                printf("A idade do seu personagem o bonifica em: Sabedoria e experiência\n");
+                printf("A idade do seu personagem o limita em: Menor energia e recuperação lenta\n");
+            }
+        } else {
+            // Mensagem de erro para idade inválida
+            printf("Idade inválida! Por favor, escolha uma idade entre 17 e 65 anos.\n");
+        }
+
+        // Pergunta ao usuário se deseja continuar
+        printf("Deseja inserir outra idade? (s/n): ");
+        scanf(" %s", continuar);
+
+    } while (continuar[0] == 's');
+
+    // Loop para inserção do sexo
+    do {
+        // Mensagem ao usuário para inserir um sexo válido
+        printf("Digite o sexo do seu personagem (Masculino/Feminino): ");
+        scanf("%s", sexo);
+
+        // Verificação do sexo
+        if (strcmp(sexo, "Masculino") == 0 || strcmp(sexo, "Feminino") == 0) {
+            printf("O sexo do seu personagem é: %s\n", sexo);
+        } else {
+            // Mensagem de erro para sexo inválido
+            printf("Sexo inválido! Por favor, insira 'Masculino' ou 'Feminino'.\n");
+        }
+
+        // Pergunta ao usuário se deseja continuar
+        printf("Deseja corrigir o sexo? (s/n): ");
+        scanf(" %s", continuar);
+
+    } while (continuar[0] == 's');
+
+    // Loop para inserção da altura
+    do {
+        // Mensagem ao usuário para inserir a altura
+        printf("Digite a altura do seu personagem em centímetros: ");
+        scanf("%d", &altura);
+
+        // Verificação se a altura está dentro do intervalo permitido
+        if (altura >= 150 && altura <= 200) {
+            // Impressão da altura válida
+            printf("A altura do seu personagem é: %d cm\n", altura);
+        } else {
+            // Mensagem de erro para altura inválida
+            printf("Altura inválida! Por favor, escolha uma altura entre 150 e 200 cm.\n");
+        }
+
+        // Pergunta ao usuário se deseja continuar
+        printf("Deseja inserir outra altura? (s/n): ");
+        scanf(" %s", continuar);
+
+    } while (continuar[0] == 's');
+
+    // Loop para inserção do peso
+    do {
+        // Mensagem ao usuário para inserir o peso
+        printf("Digite o peso do seu personagem em kg: ");
+        scanf("%f", &peso);
+
+        // Verificação se o peso está dentro do intervalo permitido
+        if (peso >= 50 && peso <= 150) {
+            // Impressão do peso válido
+            printf("O peso do seu personagem é: %.2f kg\n", peso);
+        } else {
+            // Mensagem de erro para peso inválido
+            printf("Peso inválido! Por favor, escolha um peso entre 50 e 150 kg.\n");
+        }
+
+        // Pergunta ao usuário se deseja continuar
+        printf("Deseja inserir outro peso? (s/n): ");
+        scanf(" %s", continuar);
+
+    } while (continuar[0] == 's');
+
+    // Cálculo do IMC
+    float altura_m = altura / 100.0; // Convertendo altura para metros
+    imc = peso / (altura_m * altura_m);
+
+    // Classificação do IMC
+    printf("O IMC do seu personagem é: %.2f\n", imc);
+    if (imc < 18.5) {
+        printf("A classificação do IMC é: Abaixo do peso\n");
+        printf("Bonifica em: Agilidade\n");
+        printf("Limita em: Força\n");
+    } else if (imc >= 18.5 && imc < 25.0) {
+        printf("A classificação do IMC é: Peso normal\n");
+        printf("Bonifica em: Equilíbrio\n");
+        printf("Limita em: Nenhuma limitação\n");
+    } else if (imc >= 25.0 && imc < 30.0) {
+        printf("A classificação do IMC é: Sobrepeso\n");
+        printf("Bonifica em: Resistência\n");
+        printf("Limita em: Agilidade\n");
+    } else if (imc >= 30.0 && imc < 35.0) {
+        printf("A classificação do IMC é: Obesidade grau 1\n");
+        printf("Bonifica em: Resiliência\n");
+        printf("Limita em: Mobilidade\n");
+    } else if (imc >= 35.0 && imc < 40.0) {
+        printf("A classificação do IMC é: Obesidade grau 2\n");
+        printf("Bonifica em: Força\n");
+        printf("Limita em: Saúde\n");
+    } else {
+        printf("A classificação do IMC é: Obesidade grau 3\n");
+        printf("Bonifica em: Nenhuma bonificação\n");
+        printf("Limita em: Saúde severamente afetada\n");
+    }
+
+    return 0;
+}
